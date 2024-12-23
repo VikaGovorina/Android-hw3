@@ -26,7 +26,6 @@ class ProductDetailFragment : Fragment() {
     ): View? {
         binding = FragmentProductDetailBinding.inflate(inflater,container,false)
 
-        println("detail fragment")
         val product: Product = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arguments?.getParcelable("product", Product::class.java)
         } else {

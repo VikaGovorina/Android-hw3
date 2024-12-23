@@ -1,25 +1,22 @@
 package com.example.makeupapp
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import androidx.navigation.NavController
 import com.example.makeupapp.databinding.ProductItemLayoutBinding
 
-class ProductAdapter(private val products: List<Product>, private val onItemClick: (Product) -> Unit): ListAdapter<Product, ProductAdapter.ProductViewHolder>(comparator)  {
+class ProductAdapter(private val products:
+                     LiveData<List<Product>>, private val onItemClick: (Product?) -> Unit): ListAdapter<Product, ProductAdapter.ProductViewHolder>(comparator)  {
     
     inner class ProductViewHolder(var binding: ProductItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
     {
         init {
             itemView.setOnClickListener  {
-//                println(products[adapterPosition].id)
-//                println(products[adapterPosition].name)
-//                println(products[adapterPosition].imageLink)
-                onItemClick(products[adapterPosition])
+                onItemClick(products.value?.get(adapterPosition))
             }
         }
     }
@@ -40,17 +37,9 @@ class ProductAdapter(private val products: List<Product>, private val onItemClic
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        holder.binding.productName.text = products[position].name
-        holder.binding.productImage.load(products[position].imageLink)
-        holder.binding.productPrice.text = "$${products[position].price}"
-        holder.binding.productTags.text = products[position].tagList?.joinToString(separator = ", ") { it ?: "" }
-
-//        getItem(position).let {
-//            holder.binding.productName.text = it.name
-//            holder.binding.productImage.load(it.imageLink)
-//            holder.binding.productPrice.text = "$${it.price}"
-//            holder.binding.productTags.text = it.tagList?.joinToString(separator = ", ") { it ?: "" }
-//
-//        }
+        holder.binding.productName.text = products.value?.get(position)?.name
+        holder.binding.productImage.load(products.value?.get(position)?.imageLink)
+        holder.binding.productPrice.text = "$${products.value?.get(position)?.price}"
+        holder.binding.productTags.text = products.value?.get(position)?.tagList?.joinToString(separator = ", ") { it ?: "" }
     }
 }

@@ -47,14 +47,10 @@ data class Product(
     var priceSign: String?,
     @SerializedName("product_api_url")
     var productApiUrl: String?,
-//    @SerializedName("product_colors")
-//    var productColors: List<ProductColor?>?,
     @SerializedName("product_link")
     var productLink: String?,
     @SerializedName("product_type")
     var productType: String?,
-//    @SerializedName("rating")
-//    var rating: Any?,
     @SerializedName("tag_list")
     var tagList: List<String?>?,
     @SerializedName("updated_at")
@@ -62,11 +58,3 @@ data class Product(
     @SerializedName("website_link")
     var websiteLink: String?
 ) : Parcelable
-
-//@Parcelize
-//data class ProductColor(
-//    @SerializedName("colour_name")
-//    var colourName: String?,
-//    @SerializedName("hex_value")
-//    var hexValue: String?
-//) : Parcelable
