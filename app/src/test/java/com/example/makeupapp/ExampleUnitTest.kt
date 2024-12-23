@@ -1,4 +1,4 @@
-package com.example.hw3vkapp
+package com.example.makeupapp
 
 import org.junit.Test
 

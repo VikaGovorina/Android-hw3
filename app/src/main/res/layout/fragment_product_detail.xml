@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_primary">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/background_primary"
+    tools:context=".ProductDetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
             android:background="@drawable/rounded_background"/>
 
         <ImageView
-            android:id="@+id/mealImage"
+            android:id="@+id/productImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@null"
@@ -26,15 +28,15 @@
             android:scaleType="centerCrop"/>
 
         <TextView
-            android:id="@+id/mealName"
+            android:id="@+id/productName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
             android:textStyle="bold"
-/>
+            />
 
         <TextView
-            android:id="@+id/mealInstructions"
+            android:id="@+id/productDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
