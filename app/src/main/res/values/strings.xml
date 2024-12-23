@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HW3</string>
+    <string name="back_button_text">Back</string>
+    <string name="recipes">Recipes</string>
+    <string name="hint_search">Search</string>
+    <string name="product_name">Meal name</string>
+    <string name="product_description">Product description</string>
+    <string name="produce_price">300 ₽</string>
+    <string name="add_to_cart">Add to cart</string>
+</resources>
