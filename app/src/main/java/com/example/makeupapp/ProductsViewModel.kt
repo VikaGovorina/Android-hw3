@@ -5,11 +5,14 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import coil.ImageLoader
+import coil.request.ImageRequest
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +42,11 @@ class ProductsViewModel : ViewModel() {
                     _isLoading.value = false
                     if (response.isSuccessful && response.body() != null) {
                         if (response.code() == 200) {
-                            _products.value = response.body()
+                            val filteredProducts = response.body()!!.filter { product ->
+                                val isValidPrice = product.price?.toDoubleOrNull()?.let { it > 0.0 } ?: false
+                                isValidPrice
+                            }
+                            _products.value = filteredProducts
                         }
                     } else {
                         _errorMessage.value = "Error while fetching data"

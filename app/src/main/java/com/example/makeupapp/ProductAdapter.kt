@@ -38,8 +38,13 @@ class ProductAdapter(private val products:
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.binding.productName.text = products.value?.get(position)?.name
-        holder.binding.productImage.load(products.value?.get(position)?.imageLink)
+        holder.binding.productImage.load(products.value?.get(position)?.imageLink) {
+            placeholder(R.drawable.default_image)
+            error(R.drawable.default_image)
+        }
+
         holder.binding.productPrice.text = "$${products.value?.get(position)?.price}"
         holder.binding.productTags.text = products.value?.get(position)?.tagList?.joinToString(separator = ", ") { it ?: "" }
+
     }
 }
